@@ -5,6 +5,7 @@ The migration contract for GoInto's Ethereum smart contracts
 ## Addresses
 
 Ropsten: `0x55646c2d031c6be279d34b56a050b38543c302d1`
+
 Main Net: `TBD`
 
 ## Usage
@@ -19,7 +20,7 @@ Use this function to get the address of a contract using a string key.
     var migrationABI = [{"constant":true,"inputs":[{"name":"key","type":"string"}],"name":"getContract","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"}];
 
     // Get the contract instance
-    var migrate = web3.eth.contract(shortABI).at(TBD);
+    var migrate = web3.eth.contract(shortABI).at(0x55646c2d031c6be279d34b56a050b38543c302d1);
 
     // Get the contract address you're looking for
     migrate.getContract("etherep")
@@ -32,7 +33,7 @@ Get the permissions of an address.  Returns `(bool admin, bool manager)`.
     var migrationABI = [{"constant":true,"inputs":[{"name":"who","type":"address"}],"name":"getPermissions","outputs":[{"name":"","type":"bool"},{"name":"","type":"bool"}],"payable":false,"type":"function"}];
 
     // Get the contract instance
-    var migrate = web3.eth.contract(shortABI).at(TBD);
+    var migrate = web3.eth.contract(shortABI).at(0x55646c2d031c6be279d34b56a050b38543c302d1);
 
     // Get the permissions for an address
     migrate.getPermissions("0x123deadbeef456...")
