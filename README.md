@@ -2,6 +2,11 @@
 
 The migration contract for GoInto's Ethereum smart contracts
 
+## Addresses
+
+Ropsten: `0x55646c2d031c6be279d34b56a050b38543c302d1`
+Main Net: `TBD`
+
 ## Usage
 
 Some limited public use constant functions are documented below.  For further usage, please see the contract source.
