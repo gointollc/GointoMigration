@@ -8,7 +8,7 @@ contract("GointoMigration", function(accounts) {
     var mary = accounts[3];
     var whoever = accounts[4];
 
-    it("should not not allow a random user to set a contract", function() {
+    it("should not allow a random user to set a contract", function() {
 
         var mig;
 
@@ -17,6 +17,42 @@ contract("GointoMigration", function(accounts) {
             mig = instance;
 
             return mig.setContract("ratingstore", whoever, {from: jack});
+
+        })
+        .then(assert.fail)
+        .catch(function(err) {
+            assert(err.message.indexOf('invalid opcode') >= 0, "should have thrown invalid opcode");
+        });
+
+    });
+
+    it("should not allow a key longer than 32 characters for contract storage", function() {
+
+        var mig;
+
+        return GointoMigration.deployed().then(function(instance) {
+
+            mig = instance;
+
+            return mig.setContract("iamalongkeyjustlongenoughtopass32", whoever, {from: manager});
+
+        })
+        .then(assert.fail)
+        .catch(function(err) {
+            assert(err.message.indexOf('invalid opcode') >= 0, "should have thrown invalid opcode");
+        });
+
+    });
+
+    it("should not be able to fetch a key longer than 32 characters", function() {
+
+        var mig;
+
+        return GointoMigration.deployed().then(function(instance) {
+
+            mig = instance;
+
+            return mig.getContract("iamalongkeyjustlongenoughtopass32");
 
         })
         .then(assert.fail)
