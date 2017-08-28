@@ -1,4 +1,5 @@
 # GointoMigration
+[![Build Status](https://travis-ci.org/gointollc/GointoMigration.svg?branch=master)](https://travis-ci.org/gointollc/GointoMigration) [![Coverage Status](https://coveralls.io/repos/github/gointollc/GointoMigration/badge.svg?branch=master)](https://coveralls.io/github/gointollc/GointoMigration?branch=master)
 
 The migration contract for GoInto's Ethereum smart contracts
 
