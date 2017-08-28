@@ -1,0 +1,17 @@
+language: javascript
+node_js:
+  - 0.8
+
+before_install:
+  - npm i -g ethereumjs-testrpc truffle 
+  - npm i 
+
+before_script:
+  - ./node_modules/.bin/testrpc -a5 &
+
+script:
+  - npm test
+
+after_script:
+  - killall testrpc
+  - npm run coverage && cat coverage/lcov.info | ./node_modules/.bin/coveralls
