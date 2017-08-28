@@ -41,9 +41,7 @@ contract GointoMigration {
      * Only admins can execute
      */
     modifier onlyAdmin() { 
-        if (managers[msg.sender].isAdmin != true) {
-            throw; 
-        }
+        require(managers[msg.sender].isAdmin == true);
         _; 
     }
 
@@ -51,9 +49,7 @@ contract GointoMigration {
      * Only managers can execute
      */
     modifier onlyManager() { 
-        if (managers[msg.sender].isManager != true) {
-            throw; 
-        }
+        require(managers[msg.sender].isManager == true);
         _; 
     }
 
@@ -69,9 +65,7 @@ contract GointoMigration {
     function setContract(string key, address contractAddress) external onlyManager {
 
         // Keep the key length down
-        if (bytes(key).length > 32) {
-            throw;
-        }
+        require(bytes(key).length <= 32);
 
         // Set
         contracts[key] = contractAddress;
@@ -89,9 +83,7 @@ contract GointoMigration {
     function getContract(string key) external constant returns (address) {
 
         // Keep the key length down
-        if (bytes(key).length > 32) {
-            throw;
-        }
+        require(bytes(key).length <= 32);
 
         // Set
         return contracts[key];
@@ -129,9 +121,7 @@ contract GointoMigration {
     function removeAdmin(address adminAddress) external onlyAdmin {
 
         // Let's make sure we have at least one admin
-        if (adminAddress == msg.sender) {
-            throw;
-        }
+        require(adminAddress != msg.sender);
 
         // Set
         managers[adminAddress] = Manager(false, false, msg.sender);
